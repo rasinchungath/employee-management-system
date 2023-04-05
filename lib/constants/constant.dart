@@ -4,7 +4,7 @@ import 'colors.dart';
 const kAppBarTextstyle = TextStyle(
   letterSpacing: 0.06,
   fontWeight: FontWeight.w700,
-  fontSize: 20,
+  fontSize: 18,
   color: kBGcolor,
 );
 
@@ -13,3 +13,12 @@ const kSearchStyle = TextStyle(
   fontSize: 12.0,
   fontWeight: FontWeight.w400,
 );
+
+const kEmployeeDetailStyle = TextStyle(
+  letterSpacing: 0.6,
+  color: Color(0XFFDFEAF0),
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+);
+
+const buttonColor = Color(0XFFFF3C38);

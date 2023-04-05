@@ -1,6 +1,7 @@
 import 'package:employee_list/constants/colors.dart';
+import 'package:employee_list/screens/add_employee_details_screen.dart';
+import 'package:employee_list/screens/employee_details_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../constants/constant.dart';
 import '../utils/home_appbar.dart';
 
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return SafeArea(
       child: Scaffold(
         appBar: homeAppbar,
@@ -90,7 +91,8 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20),
                   child: InkWell(
                     onTap: () {
-                      print('listile pressed');
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>const EmployeeDetailsScreen(),),);
+             
                     },
                     child: ListTile(
                       minLeadingWidth: 7,
@@ -112,6 +114,28 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+        floatingActionButton:Padding(
+          padding: const EdgeInsets.only(right: 12, bottom: 18),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddEmployeeDetailsScreen(),),);
+             
+            },
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.0),
+                color: const Color(0XFF556080),
+              ),
+              child: const Icon(
+                Icons.add,
+                size: 50,
+                color: kBGcolor,
+              ),
+            ),
           ),
         ),
       ),
