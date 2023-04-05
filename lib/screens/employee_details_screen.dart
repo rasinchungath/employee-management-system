@@ -177,6 +177,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                             height: 44,
                             child: ElevatedButton(
                               style: ButtonStyle(
+                                 elevation: const MaterialStatePropertyAll(0),
                                 backgroundColor:
                                     MaterialStateProperty.all(buttonColor),
                                 shape: MaterialStateProperty.all<
@@ -198,7 +199,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                               child: const Text(
                                 'Edit',
                                 style: TextStyle(
-                                  letterSpacing: 0.06,
+                                  letterSpacing: 0.6,
                                   color: Color(0XFFFFFFFF),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20,

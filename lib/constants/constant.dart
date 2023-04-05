@@ -22,3 +22,10 @@ const kEmployeeDetailStyle = TextStyle(
 );
 
 const buttonColor = Color(0XFFFF3C38);
+
+const kcustomFieldStyle = TextStyle(
+  letterSpacing: 0.6,
+  color: Color(0xFF929495),
+  fontSize: 12.0,
+  fontWeight: FontWeight.w300,
+);
