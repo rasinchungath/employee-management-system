@@ -9,23 +9,21 @@ const kAppBarTextstyle = TextStyle(
 );
 
 const kSearchStyle = TextStyle(
-  color: Color(0xFF929495),
+  color: kSearchTextColor,
   fontSize: 12.0,
   fontWeight: FontWeight.w400,
 );
 
 const kEmployeeDetailStyle = TextStyle(
   letterSpacing: 0.6,
-  color: Color(0XFFDFEAF0),
+  color: kEmployeeDetailTextColor,
   fontSize: 14,
   fontWeight: FontWeight.w600,
 );
 
-const buttonColor = Color(0XFFFF3C38);
-
 const kcustomFieldStyle = TextStyle(
   letterSpacing: 0.6,
-  color: Color(0xFF929495),
+  color: kCustomTextFieldTextColor,
   fontSize: 12.0,
   fontWeight: FontWeight.w300,
 );

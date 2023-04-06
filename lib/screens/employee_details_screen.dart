@@ -177,9 +177,9 @@ class EmployeeDetailsScreen extends StatelessWidget {
                             height: 44,
                             child: ElevatedButton(
                               style: ButtonStyle(
-                                 elevation: const MaterialStatePropertyAll(0),
+                                elevation: const MaterialStatePropertyAll(0),
                                 backgroundColor:
-                                    MaterialStateProperty.all(buttonColor),
+                                    MaterialStateProperty.all(kbuttonColor),
                                 shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                   RoundedRectangleBorder(

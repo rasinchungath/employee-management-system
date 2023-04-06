@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/constant.dart';
+import '../constants/colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key});
@@ -7,14 +7,16 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 25,),
+      padding: const EdgeInsets.only(
+        right: 25,
+      ),
       child: SizedBox(
         width: 103,
         height: 44,
         child: ElevatedButton(
           style: ButtonStyle(
             elevation: const MaterialStatePropertyAll(0),
-            backgroundColor: MaterialStateProperty.all(buttonColor),
+            backgroundColor: MaterialStateProperty.all(kbuttonColor),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),

@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: homeAppbar,
@@ -89,25 +89,27 @@ class HomeScreen extends StatelessWidget {
                 itemCount: 20,
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: InkWell(
+                  child: ListTile(
+                    minLeadingWidth: 7,
                     onTap: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>const EmployeeDetailsScreen(),),);
-             
-                    },
-                    child: ListTile(
-                      minLeadingWidth: 7,
-                      leading: Image.asset(
-                        'assets/images/Profile Picture 1.png',
-                        height: 32,
-                        width: 32,
-                      ),
-                      title: const Text(
-                        'Employee Name 1',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: Color(0XFF41485F),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EmployeeDetailsScreen(),
                         ),
+                      );
+                    },
+                    leading: Image.asset(
+                      'assets/images/Profile Picture 1.png',
+                      height: 32,
+                      width: 32,
+                    ),
+                    title: const Text(
+                      'Employee Name 1',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: Color(0XFF41485F),
                       ),
                     ),
                   ),
@@ -116,12 +118,16 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton:Padding(
+        floatingActionButton: Padding(
           padding: const EdgeInsets.only(right: 12, bottom: 18),
           child: InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddEmployeeDetailsScreen(),),);
-             
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddEmployeeDetailsScreen(),
+                ),
+              );
             },
             child: Container(
               height: 50,

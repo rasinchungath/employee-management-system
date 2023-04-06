@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../constants/constant.dart';
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hintText});
-  final String hintText;
+class GenderSelector extends StatelessWidget {
+  const GenderSelector({super.key, required this.dropDown});
+  final Widget dropDown;
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +24,11 @@ class CustomTextField extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.only(
-            left: 10,
+            left: 18,
             top: 5,
             bottom: 3,
           ),
-          child: TextFormField(
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(
-                8.5,
-              ),
-              hintText: hintText,
-              hintStyle: kcustomFieldStyle,
-              border: InputBorder.none,
-            ),
-            style: kcustomFieldStyle,
-          ),
+          child: dropDown,
         ),
       ),
     );

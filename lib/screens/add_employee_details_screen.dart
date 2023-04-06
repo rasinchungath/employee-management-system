@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
-
 import '../constants/colors.dart';
+import '../constants/constant.dart';
 import '../utils/custom_appbar.dart';
 import '../utils/custom_button.dart';
 import '../utils/custom_textfield.dart';
+import '../utils/gender_selector.dart';
 
-class AddEmployeeDetailsScreen extends StatelessWidget {
+class AddEmployeeDetailsScreen extends StatefulWidget {
   const AddEmployeeDetailsScreen({super.key});
 
+  @override
+  State<AddEmployeeDetailsScreen> createState() =>
+      _AddEmployeeDetailsScreenState();
+}
+
+class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
+  String? dropdownvalue;
+  var gender = [
+    'Male',
+    'Female',
+    'Other',
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,7 +31,7 @@ class AddEmployeeDetailsScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  left: 0, right: 10, top: 16, bottom: 16),
+                  left: 0, right: 20, top: 16, bottom: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -85,7 +98,9 @@ class AddEmployeeDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
@@ -93,9 +108,38 @@ class AddEmployeeDetailsScreen extends StatelessWidget {
                           CustomTextField(hintText: 'Last name'),
                         ],
                       ),
-                      CustomTextField(hintText: 'Gender'),
-                      CustomTextField(hintText: 'Date of Birth'),
-                      CustomTextField(hintText: 'Date of Joining'),
+                      GenderSelector(
+                        dropDown: DropdownButton(
+                          hint: const Text('Gender', style: kcustomFieldStyle,),
+                          value: dropdownvalue,
+                          underline: Container(color: Colors.transparent),
+                          isExpanded: true,
+                          icon: Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Image.asset(
+                              'assets/images/Dropdown Icon.png',
+                              height: 18,
+                              width: 18,
+                            ),
+                          ),
+                          items: gender.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(
+                                items,
+                                style: kcustomFieldStyle,
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue!;
+                            });
+                          },
+                        ),
+                      ),
+                      const CustomTextField(hintText: 'Date of Birth'),
+                      const CustomTextField(hintText: 'Date of Joining'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
@@ -127,12 +171,13 @@ class AddEmployeeDetailsScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
-                          CustomTextField(hintText: 'Pincode'),
-                          SizedBox(width: 35,),
+                          CustomTextField(hintText: 'Pin Code'),
+                          SizedBox(
+                            width: 35,
+                          ),
                           CustomButton(),
                         ],
                       )
-                      
                     ],
                   ),
                 ),
