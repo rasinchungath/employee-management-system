@@ -1,12 +1,15 @@
 import 'package:employee_list/constants/colors.dart';
 import 'package:employee_list/constants/constant.dart';
+import 'package:employee_list/models/employee_model.dart';
 import 'package:employee_list/utils/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import '../utils/custom_text.dart';
 import 'edit_employee_details_screen.dart';
 
 class EmployeeDetailsScreen extends StatelessWidget {
-  const EmployeeDetailsScreen({super.key});
+  const EmployeeDetailsScreen({super.key, required this.employee});
+  final Employee employee;
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +86,10 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      'Employee ID',
+                    Text(
+                      employee.id.toString(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         letterSpacing: 0.6,
                         color: Color(0XFFDFEAF0),
                         fontSize: 12,
@@ -96,10 +99,10 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 28,
                     ),
-                    const Text(
-                      'Firstname Last name',
+                    Text(
+                      '${employee.empFirstName} ${employee.empLastName}',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         letterSpacing: 0.6,
                         color: Color(0XFFDFEAF0),
                         fontSize: 16,
@@ -109,41 +112,41 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                    const CustomText(
-                      text: 'Gender',
+                     CustomText(
+                      text: employee.empGender.name,
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    const CustomText(
-                      text: 'Date of Birth',
+                    CustomText(
+                      text: employee.empDateOfBirth,
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    const CustomText(
-                      text: 'Date of joining',
+                    CustomText(
+                      text: employee.empDateOfJoining,
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    const CustomText(
-                      text: 'Phone number',
+                    CustomText(
+                      text: employee.empPhoneNumber,
                     ),
                     const SizedBox(
                       height: 12,
                     ),
-                    const CustomText(
-                      text: 'Email',
+                    CustomText(
+                      text: employee.empEmailId,
                     ),
                     const SizedBox(
                       height: 28,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        CustomText(text: 'Address Line 1,'),
-                        CustomText(text: 'Address Line 2,'),
+                      children: [
+                        CustomText(text: employee.empHomeAddrLine1),
+                        CustomText(text: employee.empHomeAddrLine2),
                       ],
                     ),
                     const SizedBox(
@@ -151,10 +154,10 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        CustomText(text: 'Street,'),
-                        CustomText(text: 'District,'),
-                        CustomText(text: 'State,'),
+                      children: [
+                        CustomText(text: '${employee.empHomeAddrStreet},'),
+                        CustomText(text: '${employee.empHomeAddrDistrict},'),
+                        CustomText(text: employee.empHomeAddrState),
                       ],
                     ),
                     const SizedBox(
@@ -162,9 +165,9 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        CustomText(text: 'Country - '),
-                        CustomText(text: 'Pincode'),
+                      children: [
+                        CustomText(text: '${employee.empHomeAddrCountry} - '),
+                        CustomText(text: employee.empHomeAddrPinCode),
                       ],
                     ),
                     Row(
