@@ -1,5 +1,4 @@
 import 'package:employee_list/constants/colors.dart';
-import 'package:employee_list/constants/constant.dart';
 import 'package:employee_list/models/employee_model.dart';
 import 'package:employee_list/utils/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'edit_employee_details_screen.dart';
 class EmployeeDetailsScreen extends StatelessWidget {
   const EmployeeDetailsScreen({super.key, required this.employee});
   final Employee employee;
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +46,9 @@ class EmployeeDetailsScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const EditEmployeeDetailsScreen(),
+                            builder: (context) => EditEmployeeDetailsScreen(
+                              employee: employee,
+                            ),
                           ),
                         );
                       },
@@ -112,7 +111,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                     CustomText(
+                    CustomText(
                       text: employee.empGender.name,
                     ),
                     const SizedBox(
@@ -145,7 +144,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CustomText(text: employee.empHomeAddrLine1),
+                        CustomText(text: '${employee.empHomeAddrLine1},'),
                         CustomText(text: employee.empHomeAddrLine2),
                       ],
                     ),
@@ -195,7 +194,9 @@ class EmployeeDetailsScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const EditEmployeeDetailsScreen(),
+                                        EditEmployeeDetailsScreen(
+                                      employee: employee,
+                                    ),
                                   ),
                                 );
                               },

@@ -6,7 +6,7 @@ String employeeToJson(List<Employee> data) => json.encode(List<dynamic>.from(dat
 
 class Employee {
     Employee({
-        required this.id,
+        this.id,
         required this.empFirstName,
         required this.empLastName,
         required this.empGender,
@@ -23,7 +23,7 @@ class Employee {
         required this.empHomeAddrPinCode,
     });
 
-    int id;
+    int? id;
     String empFirstName;
     String empLastName;
     EmpGender empGender;
@@ -76,7 +76,7 @@ class Employee {
     };
 }
 
-enum EmpGender { MALE, FEMALE }
+enum EmpGender { MALE, FEMALE, OTHERS}
 
 final empGenderValues = EnumValues({
     "FEMALE": EmpGender.FEMALE,
