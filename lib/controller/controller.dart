@@ -21,17 +21,14 @@ class Controller extends GetxController {
     getEmployeeList();
   }
 
-  Future<void> editEmployee({required int? id, required Employee employee}) async {
+  Future<void> editEmployee(
+      {required int? id, required Employee employee}) async {
     await HelperServices().updateDetails(id: id, employee: employee);
     getEmployeeList();
   }
 
-   Future<void> addEmployee({required Employee employee}) async {
+  Future<void> addEmployee({required Employee employee}) async {
     await HelperServices().addEmployee(employee: employee);
     getEmployeeList();
   }
-
-
-
-
 }

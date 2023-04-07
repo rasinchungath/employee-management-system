@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           return SafeArea(
             child: Scaffold(
               appBar: homeAppbar,
-              body: controller.employeeList == null
+              body: controller.employeeList.isEmpty
                   ? const Center(
                       child: CircularProgressIndicator(
                         color: Color(0XFF556080),

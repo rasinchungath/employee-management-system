@@ -65,42 +65,43 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
     final controller = Get.put(Controller());
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: customAppbar(title: 'Add Employee details'),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 20,
-                top: 16,
-                bottom: 16,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RawMaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    elevation: 0,
-                    fillColor: const Color(0XFF556080),
-                    padding: const EdgeInsets.all(0),
-                    shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: kBGcolor,
-                      size: 30.0,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 0,
+                  right: 20,
+                  top: 16,
+                  bottom: 16,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RawMaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      elevation: 0,
+                      fillColor: const Color(0XFF556080),
+                      padding: const EdgeInsets.all(0),
+                      shape: const CircleBorder(),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: kBGcolor,
+                        size: 30.0,
+                      ),
                     ),
-                  ),
-                  CustomButton(
-                    onPressed: () async {},
-                  ),
-                ],
+                    CustomButton(
+                      onPressed: () async {},
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              Container(
+                height: 580,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
@@ -123,6 +124,7 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                       Row(
                         children: [
                           CustomTextField(
+                            keyboardType: TextInputType.number,
                             controller: empIDController,
                             hintText: 'Employee ID',
                           ),
@@ -143,11 +145,15 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: firstNameController,
-                              hintText: 'First name'),
+                            keyboardType: TextInputType.name,
+                            controller: firstNameController,
+                            hintText: 'First name',
+                          ),
                           CustomTextField(
-                              controller: lastNameController,
-                              hintText: 'Last name'),
+                            keyboardType: TextInputType.name,
+                            controller: lastNameController,
+                            hintText: 'Last name',
+                          ),
                         ],
                       ),
                       GenderSelector(
@@ -185,56 +191,82 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                         ),
                       ),
                       CustomTextField(
-                          controller: dObController, hintText: 'Date of Birth'),
+                        keyboardType: TextInputType.datetime,
+                        controller: dObController,
+                        hintText: 'Date of Birth',
+                      ),
                       CustomTextField(
-                          controller: dOjController,
-                          hintText: 'Date of Joining'),
+                        keyboardType: TextInputType.datetime,
+                        controller: dOjController,
+                        hintText: 'Date of Joining',
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: phoneController,
-                              hintText: 'Phone Number'),
+                            keyboardType: TextInputType.phone,
+                            controller: phoneController,
+                            hintText: 'Phone Number',
+                          ),
                           CustomTextField(
-                              controller: emailController, hintText: 'Email'),
+                            keyboardType: TextInputType.emailAddress,
+                            controller: emailController,
+                            hintText: 'Email',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: adLine1Controller,
-                              hintText: 'Address Line 1,'),
+                            keyboardType: TextInputType.name,
+                            controller: adLine1Controller,
+                            hintText: 'Address Line 1,',
+                          ),
                           CustomTextField(
-                              controller: adLine2Controller,
-                              hintText: 'Address Line 2'),
+                            keyboardType: TextInputType.name,
+                            controller: adLine2Controller,
+                            hintText: 'Address Line 2',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: streetController, hintText: 'Street'),
+                            keyboardType: TextInputType.name,
+                            controller: streetController,
+                            hintText: 'Street',
+                          ),
                           CustomTextField(
-                              controller: districtController,
-                              hintText: 'District'),
+                            keyboardType: TextInputType.name,
+                            controller: districtController,
+                            hintText: 'District',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: stateController, hintText: 'State'),
+                            keyboardType: TextInputType.name,
+                            controller: stateController,
+                            hintText: 'State',
+                          ),
                           CustomTextField(
-                              controller: countryController,
-                              hintText: 'Country'),
+                            keyboardType: TextInputType.name,
+                            controller: countryController,
+                            hintText: 'Country',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: pinController, hintText: 'Pin Code'),
+                              keyboardType: TextInputType.number,
+                              controller: pinController,
+                              hintText: 'Pin Code'),
                           const SizedBox(
                             width: 35,
                           ),
@@ -261,9 +293,7 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                                 await controller.editEmployee(
                                     id: widget.employee.id, employee: employee);
 
-                                    
-
-                                Get.to(const HomeScreen());
+                                Get.offAll(const HomeScreen());
                               } else {
                                 Get.snackbar(
                                   'Some fields are missing',
@@ -281,8 +311,8 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

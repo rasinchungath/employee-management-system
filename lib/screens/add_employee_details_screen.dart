@@ -36,43 +36,62 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
   TextEditingController countryController = TextEditingController();
   TextEditingController pinController = TextEditingController();
 
+  bool isEmailRegistered(String email, List<Employee> employeeList) {
+    for (Employee employee in employeeList) {
+      if (employee.empEmailId == email) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool isMobRegistered(String phone, List<Employee> employeeList) {
+    for (Employee employee in employeeList) {
+      if (employee.empPhoneNumber == phone) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
-     final controller = Get.put(Controller());
+    final controller = Get.put(Controller());
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: customAppbar(title: 'Add Employee details'),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 0, right: 20, top: 16, bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RawMaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    elevation: 0,
-                    fillColor: const Color(0XFF556080),
-                    padding: const EdgeInsets.all(0),
-                    shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: kBGcolor,
-                      size: 30.0,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 0, right: 20, top: 16, bottom: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RawMaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      elevation: 0,
+                      fillColor: const Color(0XFF556080),
+                      padding: const EdgeInsets.all(0),
+                      shape: const CircleBorder(),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: kBGcolor,
+                        size: 30.0,
+                      ),
                     ),
-                  ),
-                  CustomButton(
-                    onPressed: () {},
-                  ),
-                ],
+                    CustomButton(
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              Container(
+                height: 580,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
@@ -95,6 +114,7 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                       Row(
                         children: [
                           CustomTextField(
+                            keyboardType: TextInputType.number,
                             controller: empIDController,
                             hintText: 'Employee ID',
                           ),
@@ -124,9 +144,11 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
+                              keyboardType: TextInputType.name,
                               controller: firstNameController,
                               hintText: 'First name'),
                           CustomTextField(
+                              keyboardType: TextInputType.name,
                               controller: lastNameController,
                               hintText: 'Last name'),
                         ],
@@ -166,27 +188,37 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                         ),
                       ),
                       CustomTextField(
-                          controller: dObController, hintText: 'Date of Birth'),
+                        keyboardType: TextInputType.datetime,
+                        controller: dObController,
+                        hintText: 'Date of Birth',
+                      ),
                       CustomTextField(
+                          keyboardType: TextInputType.datetime,
                           controller: dOjController,
                           hintText: 'Date of Joining'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
+                              keyboardType: TextInputType.phone,
                               controller: phoneController,
                               hintText: 'Phone Number'),
                           CustomTextField(
-                              controller: emailController, hintText: 'Email'),
+                            keyboardType: TextInputType.emailAddress,
+                            controller: emailController,
+                            hintText: 'Email',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
+                              keyboardType: TextInputType.name,
                               controller: adLine1Controller,
                               hintText: 'Address Line 1'),
                           CustomTextField(
+                              keyboardType: TextInputType.name,
                               controller: adLine2Controller,
                               hintText: 'Address Line 2'),
                         ],
@@ -195,27 +227,39 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: streetController, hintText: 'Street'),
+                            keyboardType: TextInputType.name,
+                            controller: streetController,
+                            hintText: 'Street',
+                          ),
                           CustomTextField(
-                              controller: districtController,
-                              hintText: 'District'),
+                            keyboardType: TextInputType.name,
+                            controller: districtController,
+                            hintText: 'District',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: stateController, hintText: 'State'),
+                            keyboardType: TextInputType.name,
+                            controller: stateController,
+                            hintText: 'State',
+                          ),
                           CustomTextField(
-                              controller: countryController,
-                              hintText: 'Country'),
+                            keyboardType: TextInputType.name,
+                            controller: countryController,
+                            hintText: 'Country',
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                              controller: pinController, hintText: 'Pin Code'),
+                              keyboardType: TextInputType.number,
+                              controller: pinController,
+                              hintText: 'Pin Code'),
                           const SizedBox(
                             width: 35,
                           ),
@@ -223,26 +267,43 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                             onPressed: () async {
                               if (firstNameController.text.isNotEmpty &&
                                   lastNameController.text.isNotEmpty) {
-                                var employee = Employee(
-                                  empFirstName: firstNameController.text,
-                                  empLastName: lastNameController.text,
-                                  empGender: selectedGender,
-                                  empDateOfBirth: dObController.text,
-                                  empDateOfJoining: dOjController.text,
-                                  empPhoneNumber: phoneController.text,
-                                  empEmailId: emailController.text,
-                                  empHomeAddrLine1: adLine1Controller.text,
-                                  empHomeAddrLine2: adLine2Controller.text,
-                                  empHomeAddrStreet: streetController.text,
-                                  empHomeAddrDistrict: districtController.text,
-                                  empHomeAddrState: stateController.text,
-                                  empHomeAddrCountry: countryController.text,
-                                  empHomeAddrPinCode: pinController.text,
-                                );
-                               await controller.addEmployee(
-                                    employee: employee);
+                                bool email = isEmailRegistered(
+                                    emailController.text,
+                                    controller.employeeList);
+                                bool phone = isMobRegistered(
+                                    phoneController.text,
+                                    controller.employeeList);
+                                if (email == false && phone == false) {
+                                  var employee = Employee(
+                                    empFirstName: firstNameController.text,
+                                    empLastName: lastNameController.text,
+                                    empGender: selectedGender,
+                                    empDateOfBirth: dObController.text,
+                                    empDateOfJoining: dOjController.text,
+                                    empPhoneNumber: phoneController.text,
+                                    empEmailId: emailController.text,
+                                    empHomeAddrLine1: adLine1Controller.text,
+                                    empHomeAddrLine2: adLine2Controller.text,
+                                    empHomeAddrStreet: streetController.text,
+                                    empHomeAddrDistrict:
+                                        districtController.text,
+                                    empHomeAddrState: stateController.text,
+                                    empHomeAddrCountry: countryController.text,
+                                    empHomeAddrPinCode: pinController.text,
+                                  );
+                                  await controller.addEmployee(
+                                      employee: employee);
 
-                                Get.to(const HomeScreen());
+                                  Get.offAll(const HomeScreen());
+                                } else {
+                                  Get.snackbar(
+                                    'Email or phone is already Registered',
+                                    'please fill another email or phone',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: const Color(0XFF556080),
+                                    colorText: const Color(0XFFE6FAFC),
+                                  );
+                                }
                               } else {
                                 Get.snackbar(
                                   'Some fields are missing',
@@ -260,8 +321,8 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
 
-showAlertDialog({required BuildContext context, required VoidCallback onPressed}) {
+showAlertDialog(
+    {required BuildContext context, required VoidCallback onPressed}) {
   showDialog(
       context: context,
       builder: (BuildContext context) {

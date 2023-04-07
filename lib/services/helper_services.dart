@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:employee_list/models/employee_model.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HelperServices {
@@ -24,7 +26,6 @@ class HelperServices {
 
   Future<void> updateDetails(
       {required int? id, required Employee employee}) async {
-    print('update');
     final url = Uri.parse('$uri/$id');
     final headers = <String, String>{
       'Content-Type': 'application/json',
@@ -35,10 +36,16 @@ class HelperServices {
       headers: headers,
       body: body,
     );
-    print(response.statusCode);
+
     try {
       if (response.statusCode == 200) {
-        print(response.body);
+        Get.snackbar(
+          'Success',
+          'Employee details updated successfully',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color(0XFF556080),
+          colorText: const Color(0XFFE6FAFC),
+        );
       }
     } catch (e) {
       throw Exception('Failed to update employee');
@@ -46,7 +53,6 @@ class HelperServices {
   }
 
   Future<void> addEmployee({required Employee employee}) async {
-    print('update');
     final url = Uri.parse(uri);
     final headers = <String, String>{
       'Content-Type': 'application/json',
@@ -57,29 +63,31 @@ class HelperServices {
       headers: headers,
       body: body,
     );
-    print(response.statusCode);
-    print('add details here');
+
     try {
-      if (response.statusCode == 200) {
-        print(response.body);
+      if (response.statusCode == 201) {
+        Get.snackbar(
+          'Success',
+          'New Employee added successfully',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color(0XFF556080),
+          colorText: const Color(0XFFE6FAFC),
+        );
       }
     } catch (e) {
       throw Exception('Failed to update employee');
     }
   }
 
- 
-
   Future<void> deleteEmployee({
     required int? id,
   }) async {
-    print(id);
     final url = Uri.parse('$uri/$id');
     try {
       final response = await http.delete(url);
       print(response.statusCode);
       if (response.statusCode == 200) {
-        print('sucess');
+        print('deleted');
       }
     } catch (e) {
       throw Exception('failed to delete employee');
