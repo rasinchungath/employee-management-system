@@ -54,9 +54,10 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
     return false;
   }
 
+  final controller = Get.put(Controller());
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(Controller());
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -85,7 +86,9 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                       ),
                     ),
                     CustomButton(
-                      onPressed: () {},
+                      onPressed: () async{
+                         await addEmployee();
+                      },
                     ),
                   ],
                 ),
@@ -265,54 +268,7 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                           ),
                           CustomButton(
                             onPressed: () async {
-                              if (firstNameController.text.isNotEmpty &&
-                                  lastNameController.text.isNotEmpty) {
-                                bool email = isEmailRegistered(
-                                    emailController.text,
-                                    controller.employeeList);
-                                bool phone = isMobRegistered(
-                                    phoneController.text,
-                                    controller.employeeList);
-                                if (email == false && phone == false) {
-                                  var employee = Employee(
-                                    empFirstName: firstNameController.text,
-                                    empLastName: lastNameController.text,
-                                    empGender: selectedGender,
-                                    empDateOfBirth: dObController.text,
-                                    empDateOfJoining: dOjController.text,
-                                    empPhoneNumber: phoneController.text,
-                                    empEmailId: emailController.text,
-                                    empHomeAddrLine1: adLine1Controller.text,
-                                    empHomeAddrLine2: adLine2Controller.text,
-                                    empHomeAddrStreet: streetController.text,
-                                    empHomeAddrDistrict:
-                                        districtController.text,
-                                    empHomeAddrState: stateController.text,
-                                    empHomeAddrCountry: countryController.text,
-                                    empHomeAddrPinCode: pinController.text,
-                                  );
-                                  await controller.addEmployee(
-                                      employee: employee);
-
-                                  Get.offAll(const HomeScreen());
-                                } else {
-                                  Get.snackbar(
-                                    'Email or phone is already Registered',
-                                    'please fill another email or phone',
-                                    snackPosition: SnackPosition.BOTTOM,
-                                    backgroundColor: const Color(0XFF556080),
-                                    colorText: const Color(0XFFE6FAFC),
-                                  );
-                                }
-                              } else {
-                                Get.snackbar(
-                                  'Some fields are missing',
-                                  'Please fill First and Last name',
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  backgroundColor: const Color(0XFF556080),
-                                  colorText: const Color(0XFFE6FAFC),
-                                );
-                              }
+                              await addEmployee();
                             },
                           ),
                         ],
@@ -326,5 +282,52 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
         ),
       ),
     );
+  }
+
+  addEmployee() async {
+    if (firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty) {
+      bool email =
+          isEmailRegistered(emailController.text, controller.employeeList);
+      bool phone =
+          isMobRegistered(phoneController.text, controller.employeeList);
+      if (email == false && phone == false) {
+        var employee = Employee(
+          empFirstName: firstNameController.text,
+          empLastName: lastNameController.text,
+          empGender: selectedGender,
+          empDateOfBirth: dObController.text,
+          empDateOfJoining: dOjController.text,
+          empPhoneNumber: phoneController.text,
+          empEmailId: emailController.text,
+          empHomeAddrLine1: adLine1Controller.text,
+          empHomeAddrLine2: adLine2Controller.text,
+          empHomeAddrStreet: streetController.text,
+          empHomeAddrDistrict: districtController.text,
+          empHomeAddrState: stateController.text,
+          empHomeAddrCountry: countryController.text,
+          empHomeAddrPinCode: pinController.text,
+        );
+        await controller.addEmployee(employee: employee);
+
+        Get.offAll(const HomeScreen());
+      } else {
+        Get.snackbar(
+          'Email or phone is already Registered',
+          'please fill another email or phone',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color(0XFF556080),
+          colorText: const Color(0XFFE6FAFC),
+        );
+      }
+    } else {
+      Get.snackbar(
+        'Some fields are missing',
+        'Please fill First and Last name',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0XFF556080),
+        colorText: const Color(0XFFE6FAFC),
+      );
+    }
   }
 }

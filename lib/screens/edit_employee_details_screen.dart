@@ -60,9 +60,10 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
     pinController.text = widget.employee.empHomeAddrPinCode;
   }
 
+  final controller = Get.put(Controller());
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(Controller());
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -95,7 +96,9 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                       ),
                     ),
                     CustomButton(
-                      onPressed: () async {},
+                      onPressed: () async {
+                        await updateEmployee();
+                      },
                     ),
                   ],
                 ),
@@ -272,37 +275,7 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                           ),
                           CustomButton(
                             onPressed: () async {
-                              if (firstNameController.text.isNotEmpty &&
-                                  lastNameController.text.isNotEmpty) {
-                                var employee = Employee(
-                                  empFirstName: firstNameController.text,
-                                  empLastName: lastNameController.text,
-                                  empGender: selectedGender,
-                                  empDateOfBirth: dObController.text,
-                                  empDateOfJoining: dOjController.text,
-                                  empPhoneNumber: phoneController.text,
-                                  empEmailId: emailController.text,
-                                  empHomeAddrLine1: adLine1Controller.text,
-                                  empHomeAddrLine2: adLine2Controller.text,
-                                  empHomeAddrStreet: streetController.text,
-                                  empHomeAddrDistrict: districtController.text,
-                                  empHomeAddrState: stateController.text,
-                                  empHomeAddrCountry: countryController.text,
-                                  empHomeAddrPinCode: pinController.text,
-                                );
-                                await controller.editEmployee(
-                                    id: widget.employee.id, employee: employee);
-
-                                Get.offAll(const HomeScreen());
-                              } else {
-                                Get.snackbar(
-                                  'Some fields are missing',
-                                  'Please fill First and Last name',
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  backgroundColor: const Color(0XFF556080),
-                                  colorText: const Color(0XFFE6FAFC),
-                                );
-                              }
+                              await updateEmployee();
                             },
                           ),
                         ],
@@ -316,5 +289,38 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
         ),
       ),
     );
+  }
+
+  updateEmployee() async {
+    if (firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty) {
+      var employee = Employee(
+        empFirstName: firstNameController.text,
+        empLastName: lastNameController.text,
+        empGender: selectedGender,
+        empDateOfBirth: dObController.text,
+        empDateOfJoining: dOjController.text,
+        empPhoneNumber: phoneController.text,
+        empEmailId: emailController.text,
+        empHomeAddrLine1: adLine1Controller.text,
+        empHomeAddrLine2: adLine2Controller.text,
+        empHomeAddrStreet: streetController.text,
+        empHomeAddrDistrict: districtController.text,
+        empHomeAddrState: stateController.text,
+        empHomeAddrCountry: countryController.text,
+        empHomeAddrPinCode: pinController.text,
+      );
+      await controller.editEmployee(id: widget.employee.id, employee: employee);
+
+      Get.offAll(const HomeScreen());
+    } else {
+      Get.snackbar(
+        'Some fields are missing',
+        'Please fill First and Last name',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0XFF556080),
+        colorText: const Color(0XFFE6FAFC),
+      );
+    }
   }
 }
