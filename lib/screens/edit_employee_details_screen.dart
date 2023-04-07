@@ -170,7 +170,6 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
                             setState(() {
                               selectedGender = newValue!;
                             });
-                            print(selectedGender.toString());
                           },
                           underline: Container(color: Colors.transparent),
                           isExpanded: true,
@@ -314,7 +313,7 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
       );
       await controller.editEmployee(id: widget.employee.id, employee: employee);
 
-      Get.offAll( HomeScreen());
+      Get.offAll(HomeScreen());
     } else {
       Get.snackbar(
         'Some fields are missing',

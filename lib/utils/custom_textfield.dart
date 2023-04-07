@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import '../constants/constant.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {super.key,
-      required this.hintText,
-      required this.controller,
-      required this.keyboardType});
+  CustomTextField({
+    super.key,
+    required this.hintText,
+    required this.controller,
+    required this.keyboardType,
+  });
   final String hintText;
   TextEditingController controller;
   TextInputType keyboardType;

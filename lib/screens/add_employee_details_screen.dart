@@ -167,7 +167,6 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                             setState(() {
                               selectedGender = newValue!;
                             });
-                            print(selectedGender.toString());
                           },
                           underline: Container(color: Colors.transparent),
                           isExpanded: true,

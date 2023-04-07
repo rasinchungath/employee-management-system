@@ -15,8 +15,6 @@ class HelperServices {
       if (response.statusCode == 200) {
         var json = response.body;
         return employeeFromJson(json);
-      } else {
-        print(response.statusCode);
       }
     } catch (e) {
       print(e);
@@ -24,17 +22,13 @@ class HelperServices {
     throw Exception('failed to load employee list');
   }
 
-  
   Future<Employee> getEmployeeDetail(int id) async {
     var url = Uri.parse('$uri/$id');
     var response = await client.get(url);
     try {
       if (response.statusCode == 200) {
         var json = response.body;
-        print(response.body);
         return employeeDetailFromJson(json);
-      } else {
-        print(response.statusCode);
       }
     } catch (e) {
       print(e);
@@ -103,7 +97,6 @@ class HelperServices {
     final url = Uri.parse('$uri/$id');
     try {
       final response = await http.delete(url);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         print('deleted');
       }

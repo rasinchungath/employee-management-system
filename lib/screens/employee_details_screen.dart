@@ -14,56 +14,57 @@ class EmployeeDetailsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: customAppbar(title: 'Employee details'),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 0, right: 10, top: 16, bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RawMaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    elevation: 0,
-                    fillColor: const Color(0XFF556080),
-                    padding: const EdgeInsets.all(0),
-                    shape: const CircleBorder(),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: kBGcolor,
-                      size: 30.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 10,
-                      right: 12,
-                    ),
-                    child: IconButton(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 0, right: 10, top: 16, bottom: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RawMaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EditEmployeeDetailsScreen(
-                              employee: employee,
-                            ),
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
-                      icon: const Icon(
-                        Icons.edit_square,
-                        color: Color(0XFF556080),
-                        size: 40,
+                      elevation: 0,
+                      fillColor: const Color(0XFF556080),
+                      padding: const EdgeInsets.all(0),
+                      shape: const CircleBorder(),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: kBGcolor,
+                        size: 30.0,
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 10,
+                        right: 12,
+                      ),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditEmployeeDetailsScreen(
+                                employee: employee,
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.edit_square,
+                          color: Color(0XFF556080),
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              Container(
+                height: 580,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
@@ -217,8 +218,8 @@ class EmployeeDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
