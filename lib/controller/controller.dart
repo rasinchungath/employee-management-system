@@ -4,6 +4,7 @@ import '../models/employee_model.dart';
 
 class Controller extends GetxController {
   List<Employee> employeeList = [];
+  Employee? employee;
 
   @override
   void onInit() {
@@ -14,6 +15,10 @@ class Controller extends GetxController {
   Future<void> getEmployeeList() async {
     employeeList = await HelperServices().getEmployeeDetails();
     update();
+  }
+
+  Future<Employee> getEmployeedetail(int id) async {
+    return await HelperServices().getEmployeeDetail(id);
   }
 
   Future<void> deleteEmployee(int? id) async {

@@ -86,8 +86,8 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
                       ),
                     ),
                     CustomButton(
-                      onPressed: () async{
-                         await addEmployee();
+                      onPressed: () async {
+                        await addEmployee();
                       },
                     ),
                   ],
@@ -286,7 +286,9 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
 
   addEmployee() async {
     if (firstNameController.text.isNotEmpty &&
-        lastNameController.text.isNotEmpty) {
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty) {
       bool email =
           isEmailRegistered(emailController.text, controller.employeeList);
       bool phone =
@@ -310,11 +312,11 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
         );
         await controller.addEmployee(employee: employee);
 
-        Get.offAll(const HomeScreen());
+        Get.offAll(HomeScreen());
       } else {
         Get.snackbar(
           'Email or phone is already Registered',
-          'please fill another email or phone',
+          'please fill with another email or phone',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: const Color(0XFF556080),
           colorText: const Color(0XFFE6FAFC),
@@ -323,7 +325,7 @@ class _AddEmployeeDetailsScreenState extends State<AddEmployeeDetailsScreen> {
     } else {
       Get.snackbar(
         'Some fields are missing',
-        'Please fill First and Last name',
+        'Please try to fill mandatory details',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color(0XFF556080),
         colorText: const Color(0XFFE6FAFC),

@@ -6,6 +6,10 @@ List<Employee> employeeFromJson(String str) =>
 String employeeToJson(List<Employee> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+  Employee employeeDetailFromJson(String str) => Employee.fromJson(json.decode(str));
+
+
+
 class Employee {
   Employee({
     this.id,

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kBGcolor,
         primarySwatch: Colors.blueGrey,
       ),
-      home: const HomeScreen(),
+      home:  HomeScreen(),
     );
   }
 }

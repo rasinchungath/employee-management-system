@@ -293,7 +293,9 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
 
   updateEmployee() async {
     if (firstNameController.text.isNotEmpty &&
-        lastNameController.text.isNotEmpty) {
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty) {
       var employee = Employee(
         empFirstName: firstNameController.text,
         empLastName: lastNameController.text,
@@ -312,11 +314,11 @@ class _EditEmployeeDetailsScreenState extends State<EditEmployeeDetailsScreen> {
       );
       await controller.editEmployee(id: widget.employee.id, employee: employee);
 
-      Get.offAll(const HomeScreen());
+      Get.offAll( HomeScreen());
     } else {
       Get.snackbar(
         'Some fields are missing',
-        'Please fill First and Last name',
+        'Please try to fill mandatory details',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color(0XFF556080),
         colorText: const Color(0XFFE6FAFC),

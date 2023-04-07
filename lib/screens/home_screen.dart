@@ -5,15 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../constants/constant.dart';
 import '../controller/controller.dart';
+import '../models/employee_model.dart';
 import '../utils/alert_dialogue.dart';
 import '../utils/home_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+  TextEditingController searchController = TextEditingController();
+
+  bool isEmpAvailable(int id, List<Employee> employeeList) {
+    for (Employee employee in employeeList) {
+      if (employee.id == id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  final controller = Get.put(Controller());
+
+  void searchEmployee(int id, List<Employee> employeeList) async {
+    bool search = isEmpAvailable(id, employeeList);
+    if (search == true) {
+      var employee = await controller.getEmployeedetail(id);
+      Get.to(EmployeeDetailsScreen(employee: employee));
+      searchController.clear();
+    } else {
+      Get.snackbar(
+        'Not Data',
+        'Employee not Registered',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0XFF556080),
+        colorText: const Color(0XFFE6FAFC),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(Controller());
     return GetBuilder(
         init: Controller(),
         builder: (context) {
@@ -60,6 +89,8 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                         Flexible(
                                           child: TextFormField(
+                                            keyboardType: TextInputType.number,
+                                            controller: searchController,
                                             decoration: const InputDecoration(
                                               contentPadding: EdgeInsets.all(
                                                 8.5,
@@ -76,7 +107,10 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () async {},
+                                  onTap: () async {
+                                    int id = int.parse(searchController.text);
+                                    searchEmployee(id, controller.employeeList);
+                                  },
                                   child: Container(
                                     height: 35,
                                     width: 35,

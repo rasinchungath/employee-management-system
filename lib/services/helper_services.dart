@@ -24,6 +24,24 @@ class HelperServices {
     throw Exception('failed to load employee list');
   }
 
+  
+  Future<Employee> getEmployeeDetail(int id) async {
+    var url = Uri.parse('$uri/$id');
+    var response = await client.get(url);
+    try {
+      if (response.statusCode == 200) {
+        var json = response.body;
+        print(response.body);
+        return employeeDetailFromJson(json);
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print(e);
+    }
+    throw Exception('failed to load employee list');
+  }
+
   Future<void> updateDetails(
       {required int? id, required Employee employee}) async {
     final url = Uri.parse('$uri/$id');
