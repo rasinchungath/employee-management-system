@@ -34,15 +34,15 @@ class CustomTextField extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(
             left: 10,
-            top: 5,
-            bottom: 3,
           ),
           child: TextFormField(
             keyboardType: keyboardType,
             controller: controller,
             decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(
-                8.5,
+              contentPadding: const EdgeInsets.only(
+                left: 8,
+                right: 8,
+                bottom: 13,
               ),
               hintText: hintText,
               hintStyle: kcustomFieldStyle,

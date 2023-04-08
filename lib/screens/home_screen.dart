@@ -85,8 +85,6 @@ class HomeScreen extends StatelessWidget {
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                         left: 10,
-                                        top: 5,
-                                        bottom: 5,
                                       ),
                                       child: Row(
                                         children: [
@@ -102,8 +100,10 @@ class HomeScreen extends StatelessWidget {
                                                   TextInputType.number,
                                               controller: searchController,
                                               decoration: const InputDecoration(
-                                                contentPadding: EdgeInsets.all(
-                                                  8.5,
+                                                contentPadding: EdgeInsets.only(
+                                                  left: 8,
+                                                  right: 8,
+                                                  bottom: 13,
                                                 ),
                                                 hintText: 'Search',
                                                 hintStyle: kSearchStyle,
