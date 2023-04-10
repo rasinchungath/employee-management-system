@@ -45,6 +45,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return GetBuilder(
         init: Controller(),
         builder: (context) {
@@ -72,8 +75,8 @@ class HomeScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    height: 35,
-                                    width: 190,
+                                    height: height * 0.048,
+                                    width: width * .55,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                         color: const Color(0xFFC9C9CB),
@@ -90,8 +93,8 @@ class HomeScreen extends StatelessWidget {
                                         children: [
                                           Image.asset(
                                             'assets/images/Lens Icon.png',
-                                            height: 13,
-                                            width: 13,
+                                            height: height * 0.05,
+                                            width: width * 0.04,
                                           ),
                                           Flexible(
                                             child: TextFormField(
@@ -124,8 +127,8 @@ class HomeScreen extends StatelessWidget {
                                           id, controller.employeeList);
                                     },
                                     child: Container(
-                                      height: 35,
-                                      width: 35,
+                                      height: height * 0.05,
+                                      width: width * 0.1,
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(4.0),
@@ -146,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: controller.employeeList.length,
                               itemBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.only(left: 20),
+                                padding: EdgeInsets.only(left: width*0.057),
                                 child: ListTile(
                                   minLeadingWidth: 7,
                                   onTap: () {
@@ -200,8 +203,8 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     child: Container(
-                      height: 50,
-                      width: 50,
+                      height: height * 0.07,
+                      width: width * 0.15,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4.0),
                         color: const Color(0XFF556080),
